@@ -51,12 +51,15 @@ def book_search(request):
 def filter(request):
     price = request.GET.get('price')
     publication_date = request.GET.get('publication_date')
+    publication_date_before = request.GET.get('publication_date_before')
     books = Book.objects.all()
 
     if price:
         books = books.filter(price__lte=price)
     if publication_date:
         books = books.filter(publication_date__gte=publication_date)
+    if publication_date_before:
+        books = books.filter(publication_date__lte=publication_date_before)
 
     return render(request , 'books/book_list.html' , {'books' : books})
 

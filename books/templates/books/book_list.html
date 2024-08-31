@@ -8,17 +8,18 @@
         <button type="submit" >Search</button>
     </form>
     <form action="{% url 'book_filter' %}" method="GET">
-        <input type="number" name="price" placeholder="Max-Price">
-        publicationDateAfter?<input type="date" name="publication_date" placeholder="date">
+        <input type="number" name="price" placeholder="Max-Price"><br>
+        publication date after?<input type="date" name="publication_date" placeholder="date">
+        publication date before?<input type="date" name="publication_date_before" placeholder="date">
         <button type="submit">filter</button>
     </form>
     <ul>
         {% for book in books %}
-        <li>
+        <li style="padding: 20px; list-style: decimal;">
             <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a>
             - {{ book.author }} - {{ book.publication_date }} - ₠{{ book.price }}
-            <a href="{% url 'book_edit' book.pk %}">Edit</a>
-            <a href="{% url 'book_delete' book.pk %}">Delete</a>
+            <a href="{% url 'book_edit' book.pk %}" style="margin-left: 30px;">Edit</a>
+            <a href="{% url 'book_delete' book.pk %}" style="margin-left: 30px;">Delete</a>
         </li>
         {% endfor %}
     </ul>
